@@ -1,9 +1,8 @@
-
 import sys
 import random
 
-def schaltjahr():
 
+def schaltjahr():
     jahr = int(input("Geben Sie ein Schaltjahr an: "))
 
     if jahr % 400 == 0:
@@ -21,7 +20,6 @@ def schaltjahr():
 
 
 def hundejahre():
-
     # Landläufig rechnet man Hundejahre in Menschenjahre um, indem man das Alter des Hundes mit 7 multipliziert. Je nach Hundegröße und Rasse sieht die Umrechnung jedoch etwas komplizierter aus, z.B.:
     # Ein einjähriger Hund entspricht in etwa einem 14-jährigen Menschen.
     # 2 Jahre eines Hundes entsprechen 22 Jahre eines Menschen.
@@ -43,7 +41,6 @@ def hundejahre():
 
 
 def forschleife():
-
     endzahl = int(input("Geben Sie Ein Zahl zwischen 1 - 100 "))
 
     summe = 0
@@ -56,7 +53,6 @@ def forschleife():
 
 
 def mrandom():
-
     randomNumber = random.randint(1, 20)
 
     userInput = int(input("Rate die Nummer zwischen 1 und 20: "))
@@ -77,7 +73,6 @@ def mrandom():
 
 
 def mrandom2():
-
     randomNumber = random.randint(1, 20)
     print(randomNumber)
 
@@ -95,5 +90,31 @@ def mrandom2():
     print("Du hast keine Versuche mehr!")
 
 
+## Aufgabe 3
+def matheaufgaben():
+    versuche = 5
+    fehler = 0
+    while versuche != 0:
+        rnr1 = random.randint(1, 10)
+        rnr2 = random.randint(1, 10)
+        ergebnis = rnr1 + rnr2
+        while True:
+            try:
+                userInput = int(input("Was ist das Ergebnis von " + str(rnr1) + " + " + str(rnr2) + ": "))
+                break
+            except:
+                print("Bitte eine Zahl eingeben!")
+                pass
+        if userInput == ergebnis:
+            print("Antwort ist korrekt!")
+            versuche = versuche - 1
+            pass
+        else:
+            print(str(userInput) + "ist Falsch!")
+            fehler = fehler + 1
+    else:
+        print("Du hast " + str(fehler) + " Fehler gemacht!")
+
+
 if __name__ == '__main__':
-    mrandom()
+    matheaufgaben()
