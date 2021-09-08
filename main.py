@@ -1,5 +1,6 @@
 import sys
 import random
+import re
 
 
 def schaltjahr():
@@ -116,5 +117,115 @@ def matheaufgaben():
         print("Du hast " + str(fehler) + " Fehler gemacht!")
 
 
+def format_roman(case, counter):
+    ones = [ 'i', 'x', 'c', 'm' ]
+    fives = [ 'v', 'l', 'd' ]
+    label, index = '', 0
+    # This will die of IndexError when counter is too big
+    while counter > 0:
+        counter, x = divmod(counter, 10)
+        if x == 9:
+            label = ones[ index ] + ones[ index + 1 ] + label
+        elif x == 4:
+            label = ones[ index ] + fives[ index ] + label
+        else:
+            if x >= 5:
+                s = fives[ index ]
+                x = x - 5
+            else:
+                s = ''
+            s = s + ones[ index ] * x
+            label = s + label
+        index = index + 1
+    if case == 'I':
+        return label.upper()
+    return label
+    #
+    # for i in range(20):
+    #     print(format_roman("I", i))
+
+
+def roemischeZahlen1():
+    zahlen = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
+    userInput = "aaa"
+
+    while len(userInput) <= 3:
+        print("Bitte nur 3 Zahlen eingeben")
+        break
+    else:
+        userInput = str(input("Gebe eine Römische zahl ein: "))
+        pass
+
+    for i in zahlen:
+        print(i)
+
+
+def roemischeZahlen2():
+    # romZiff = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
+    # romWert = [1, 5, 10, 50, 100, 500, 1000]
+    #
+    # def rom_in_zahl(i):
+    #     for j in range(0, len(romZiff)):
+    #         if i == romZiff[j]:
+    #             return romWert[j]
+    #
+    # while True:  # Endlosschleife
+    #     i = input('Geben Sie eine roemische Ziffer ein: ')
+    #
+    #     if i not in romZiff:
+    #         print('Das ist keine roemische Ziffer!')
+    #     else:
+    #         print('Der Dezimalwert der Eingabe ist:    ', rom_in_zahl(i))
+    rom = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    while True:
+
+        dec = input("Geben Sie eine roemische Ziffer ein: ")
+
+        for i in dec:
+            print(i)
+            print(rom.get(i))
+
+        if dec is None:
+            print("Diese Zahl ist kein vorgeschriebener Wert! Abbruch Danke!")
+            break
+        print(f"Der Dezimalwert der Eingabe ist: {dec}")
+
+
+def scream(input):
+    print("UserInput=   ", input)
+    print("Capitalized= ", input.upper())
+
+
+def CollatzFolge():
+    zahl = 0
+    while True:
+        try:
+            userInput = int(input("Geben Sie eine Nummer ein "))
+            zahl = collatz(userInput)
+            break
+        except ValueError:
+            print("Bitte eine Zahl eingeben!")
+            pass
+
+    while True:
+        ans = collatz(zahl)
+        if zahl == 1:
+            print("1. Ende")
+            break
+        else:
+            print(zahl)
+            zahl = ans
+            continue
+
+
+def collatz(number):
+    if number % 2 == 0:
+        #print("True")
+        return number // 2
+    else:
+        #print("False")
+        return number * 3 + 1
+
+
 if __name__ == '__main__':
-    matheaufgaben()
+    CollatzFolge()
